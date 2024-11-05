@@ -1,0 +1,9 @@
+site_name: Performance Testing
+nav:
+  - Home: index.md
+  - Http-basics: /http-basics
+theme:
+  components:
+      site_name: true
+  theme_style: dark
+  name: simple-blog
