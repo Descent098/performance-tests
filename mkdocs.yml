@@ -1,7 +1,9 @@
 site_name: Performance Testing
+site_author: Kieran wood (@descent098)
 nav:
   - Home: index.md
-  - Http-basics: /http-basics
+  - Http-basics: http-basics/index.md
+  - Source: https://github.com/descent098/performance-tests
 theme:
   components:
       site_name: true

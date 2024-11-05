@@ -45,11 +45,11 @@ All tests were run using:
 
 Under Load:
 
-| Language | Response times (ms) 50th Percentile | Response times (ms) 95th Percentile | Requests per second | Number of users | Link | 
-|----------|-------------------------------------|-------------------------------------|---------------------|-----------------|-------|
-| Go | 6 | 20 | ~4980 | 10,000 | [Link](./go) | 
-| Python | 500 | 680 | ~3650 | 10,000 | [Link](./python) | 
-| Java | 465 | 2350 | ~3550 | 10,000 |  [Link](./java) | 
+| Language | Response times (ms) 50th Percentile | Response times (ms) 95th Percentile | Requests per second | Number of users | Link | Source | 
+|----------|-------------------------------------|-------------------------------------|---------------------|-----------------|-------|--------|
+| Go | 6 | 20 | ~4980 | 10,000 | [Link](./go) | [Link](https://github.com/Descent098/performance-tests/blob/main/http-basics/go/basic.go) |
+| Python | 500 | 680 | ~3650 | 10,000 | [Link](./python) | [Link](https://github.com/Descent098/performance-tests/blob/main/http-basics/python/basic.py) |
+| Java | 465 | 2350 | ~3550 | 10,000 |  [Link](./java) | [Link](https://github.com/Descent098/performance-tests/blob/main/http-basics/java/basic.java) |
 
 
 
