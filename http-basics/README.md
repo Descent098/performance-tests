@@ -45,11 +45,11 @@ All tests were run using:
 
 Under Load:
 
-| Language | Response times (ms) 50th Percentile | Response times (ms) 95th Percentile | Requests per second | Number of users |
-|----------|-------------------------------------|-------------------------------------|---------------------|-----------------|
-| Go | 6 | 20 | ~4980 | 10,000 |
-| Python | 500 | 680 | ~3650 | 10,000 |
-| Java | 465 | 2350 | ~3550 | 10,000 |
+| Language | Response times (ms) 50th Percentile | Response times (ms) 95th Percentile | Requests per second | Number of users | Link | 
+|----------|-------------------------------------|-------------------------------------|---------------------|-----------------|-------|
+| Go | 6 | 20 | ~4980 | 10,000 | https://kieranwood.ca/performance-tests/http-basics/go | 
+| Python | 500 | 680 | ~3650 | 10,000 | https://kieranwood.ca/performance-tests/http-basics/python | 
+| Java | 465 | 2350 | ~3550 | 10,000 |  https://kieranwood.ca/performance-tests/http-basics/java | 
 
 
 
