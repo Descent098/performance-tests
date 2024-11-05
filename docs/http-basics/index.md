@@ -7,7 +7,11 @@ This test is just designed to compare a very basic HTTP server from each languag
 - Java: The `com.sun.net.httpserver` ["standard"](https://stackoverflow.com/questions/58764710/is-package-com-sun-net-httpserver-standard) library
     - https://docs.oracle.com/javase/8/docs/jre/api/net/httpserver/spec/com/sun/net/httpserver/package-summary.html
 - Python: [FastAPI](https://fastapi.tiangolo.com/) + [uvicorn](https://www.uvicorn.org/)
+<<<<<<< HEAD
     - The default http package in python does not support multithreading, making it unfair to use in this example
+=======
+  - The default http package in python does not support multithreading, making it unfair to use in this example
+>>>>>>> 276d4f9c9a52820b77d7a1bf35f69f90f8cfc37a
 
 ### Methodology
 
@@ -55,6 +59,7 @@ Under Load:
 Takeaways:
 
 - Go is by far the most performant for this test
+<<<<<<< HEAD
     - In particular the response time is 100x lower on the 50th percentile, which is quite significant
     - Generally Go was able to handle everything, there was 1 spike in response time around ~8k users, but isn't consistent across the tests
 - Python ran much better than I thought
@@ -65,3 +70,15 @@ Takeaways:
     - It started showing first signs of struggling around 9k, but the 95th percentile results are rough compared to python
         - This means your users could be waiting up to 3 seconds before a response is sent, and this is a best case scenario because there isn't even any processing being done
     - I personally find java a pain to work with, I typically "put up" with it, because I've been told it has better performance characteristics, I'm not so sure of that anymore
+=======
+  - In particular the response time is 100x lower on the 50th percentile, which is quite significant
+  - Generally Go was able to handle everything, there was 1 spike in response time around ~8k users, but isn't consistent across the tests
+- Python ran much better than I thought
+  - There is a bunch of optimizations I can run without making changes (like [pypy](https://pypy.org/), or [optimization mode](https://stackoverflow.com/questions/2055557/what-is-the-use-of-the-o-flag-for-running-python))
+  - The response times steadily climbed with python, likely because of background running GC's, if it was left longer we would start to see the top end of that latency
+  - Much easier to work with than java
+- Java was dissapointing
+  - It started showing first signs of struggling around 9k, but the 95th percentile results are rough compared to python
+    - This means your users could be waiting up to 3 seconds before a response is sent, and this is a best case scenario because there isn't even any processing being done
+  - I personally find java a pain to work with, I typically "put up" with it, because I've been told it has better performance characteristics, I'm not so sure of that anymore
+>>>>>>> 276d4f9c9a52820b77d7a1bf35f69f90f8cfc37a
