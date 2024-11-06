@@ -48,7 +48,7 @@ Under Load:
 | Python | 500 | 680 | ~3650 | 10,000 | [Link](./python) | [Link](https://github.com/Descent098/performance-tests/blob/main/http-basics/python/basic.py) |
 | Java | 465 | 2350 | ~3550 | 10,000 |  [Link](./java) | [Link](https://github.com/Descent098/performance-tests/blob/main/http-basics/java/basic.java) |
 
-\*_Response times calculated as_ $$\frac{rt_{max}+rt_{min}}{2}$$ _where rt<sub>max</sub> is the maximum response time under full 10k load, and rt<sub>min</sub> is the minimum check links in table for more granular details_
+\*_Response times calculated as_ $\frac{rt_{max}+rt_{min}}{2}$ _where rt<sub>max</sub> is the maximum response time under full 10k load, and rt<sub>min</sub> is the minimum check links in table for more granular details_
 
 
 #### Takeaways

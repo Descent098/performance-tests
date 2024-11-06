@@ -15,7 +15,8 @@ theme:
   name: simple-blog
 
 markdown_extensions:
-    - mdx_math
+    - mdx_math:
+        enable_dollar_delimiter: True
 
 extra_css:
   - css/overrides.css
