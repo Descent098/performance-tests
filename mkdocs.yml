@@ -1,11 +1,18 @@
 site_name: Performance Testing
+
 site_author: Kieran wood (@descent098)
+site_url: https://kieranwood.ca/performance-tests
+repo_url: https://github.com/descent098/performance-tests
+
 nav:
   - Home: index.md
   - Http-basics: http-basics/index.md
   - Source: https://github.com/descent098/performance-tests
 theme:
+  theme_style: dark
   components:
       site_name: true
-  theme_style: dark
   name: simple-blog
+
+extra_css:
+  - css/overrides.css
