@@ -1,1 +1,2 @@
 mkdocs-simple-blog
+python-markdown-math
