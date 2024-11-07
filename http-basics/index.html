@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+    <head>
+                <title>Http-basics - Performance Testing</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            <link rel="canonical" href="https://kieranwood.ca/performance-tests/http-basics/">
+            <meta name="author" content="Kieran wood (@descent098)">
+
+            
+                <link  rel="icon" type="image/x-icon" href="../assets/img/favicon.ico">
+            
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                        <script>hljs.initHighlightingOnLoad();</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../assets/css/main.min.css">
+                <link href="../css/overrides.css" rel="stylesheet">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+                <script src="../search/main.js"></script>
+
+            
+                
+                    <style>
+                        :root {
+                            --text: white;
+                            --title: white;
+                            --primary: white;
+                            --background: black;
+                        }
+                    </style>
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Performance Testing</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="..">[Home]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" active 
+                            nav-link text-gray text-decoration-none" href="./">[Http-basics]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="https://github.com/descent098/performance-tests">[Source]</a>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                        
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+                    <!-- block content -->
+<section class="container post">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Http-basics</h1>
+            
+        </header>
+        <p><h2 id="http-basics">HTTP basics</h2>
+<p>This test is just designed to compare a very basic HTTP server from each language. Specifically the stack for each language is:</p>
+<ul>
+<li>Go: The <code>net/http</code> standard library<ul>
+<li>https://pkg.go.dev/net/http</li>
+</ul>
+</li>
+<li>Java: The <code>com.sun.net.httpserver</code> <a href="https://stackoverflow.com/questions/58764710/is-package-com-sun-net-httpserver-standard">"standard"</a> library<ul>
+<li>https://docs.oracle.com/javase/8/docs/jre/api/net/httpserver/spec/com/sun/net/httpserver/package-summary.html</li>
+</ul>
+</li>
+<li>Python: <a href="https://fastapi.tiangolo.com/">FastAPI</a> + <a href="https://www.uvicorn.org/">uvicorn</a><ul>
+<li>The default http package in python does not support multithreading, making it unfair to use in this example</li>
+</ul>
+</li>
+</ul>
+<h3 id="methodology">Methodology</h3>
+<p>All tests were run using:</p>
+<ul>
+<li><a href="https://locust.io/">locust</a> (version 2.32.1) to generate load and graphs<ul>
+<li>Ran using <code>locust --processes -1</code> to use all available threads</li>
+<li>Settings used</li>
+<li>Direct IP connection (i.e. <code>http://192.168.1.1:&lt;port&gt;</code>)</li>
+<li>Number of users 10,000</li>
+<li>Users/sec 100</li>
+<li>Time 5 mins</li>
+<li>Tasks<ul>
+<li>A single GET request per user to <code>/</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Load generated on a separate machine <ul>
+<li>Connected via an ethernet 2.5Gbps connection</li>
+<li>16 cores, 32 threads</li>
+<li>32GB RAM</li>
+</ul>
+</li>
+</ul>
+<h3 id="results">Results</h3>
+<p>Some warnings before reading the results and methodology:</p>
+<ul>
+<li>This test did not last long enough for lengthy GC's to cause problems</li>
+<li>10k concurrent users is largely unreasonable</li>
+<li>100 users/sec is also unreasonable, and gives little chance for servers to adapt to load<ul>
+<li>Closer to a DDOS than a typical usage pattern</li>
+</ul>
+</li>
+<li>The task itself is incredibly simplistic, and is not reasonable (no DB calls, no template parsing, etc.)</li>
+</ul>
+<p><img alt="" src="results/result-graph.png" /></p>
+<p>*<em>Run 1 is go, run 2 is Java, and run 3 is python</em></p>
+<p>Under Load:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Response times (ms) 50th Percentile</th>
+<th>Response times (ms) 95th Percentile</th>
+<th>Requests per second</th>
+<th>Number of users</th>
+<th>Link</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Go</td>
+<td>6</td>
+<td>20</td>
+<td>~4980</td>
+<td>10,000</td>
+<td><a href="./go">Link</a></td>
+<td><a href="https://github.com/Descent098/performance-tests/blob/main/http-basics/go/basic.go">Link</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td>500</td>
+<td>680</td>
+<td>~3650</td>
+<td>10,000</td>
+<td><a href="./python">Link</a></td>
+<td><a href="https://github.com/Descent098/performance-tests/blob/main/http-basics/python/basic.py">Link</a></td>
+</tr>
+<tr>
+<td>Java</td>
+<td>465</td>
+<td>2350</td>
+<td>~3550</td>
+<td>10,000</td>
+<td><a href="./java">Link</a></td>
+<td><a href="https://github.com/Descent098/performance-tests/blob/main/http-basics/java/basic.java">Link</a></td>
+</tr>
+</tbody>
+</table>
+<p>*<em>Response times calculated as</em> <script type="math/tex">\frac{rt_{max}+rt_{min}}{2}</script>
+<em>where rt<sub>max</sub> is the maximum response time under full 10k load, and rt<sub>min</sub> is the minimum check links in table for more granular details</em></p>
+<h4 id="takeaways">Takeaways</h4>
+<ul>
+<li>Go is by far the most performant for this test<ul>
+<li>In particular the response time is 100x lower on the 50th percentile, which is quite significant</li>
+<li>Generally Go was able to handle everything, there was 1 spike in response time around ~8k users, but isn't consistent across the tests</li>
+</ul>
+</li>
+<li>Python ran much better than I thought<ul>
+<li>There is a bunch of optimizations I can run without making changes (like <a href="https://pypy.org/">pypy</a>, or <a href="https://stackoverflow.com/questions/2055557/what-is-the-use-of-the-o-flag-for-running-python">optimization mode</a>)</li>
+<li>The response times steadily climbed with python, likely because of background running GC's, if it was left longer we would start to see the top end of that latency</li>
+<li>Much easier to work with than java</li>
+</ul>
+</li>
+<li>Java was dissapointing<ul>
+<li>It started showing first signs of struggling around 9k, but the 95th percentile results are rough compared to python<ul>
+<li>This means your users could be waiting up to 3 seconds before a response is sent, and this is a best case scenario because there isn't even any processing being done</li>
+</ul>
+</li>
+<li>I personally find java a pain to work with, I typically "put up" with it, because I've been told it has better performance characteristics, I'm not so sure of that anymore</li>
+</ul>
+</li>
+</ul></p>
+    </article>
+</section>
+<!-- endblock -->
+            </main>
+
+            
+                    <!-- block preview -->
+        <div class="row row-cols-md-3 text-center pt-md-3" id="component-preview">
+            <div class="col themed-grid-col">
+                <a rel="prev" href=".." class="nav-link">
+                    <i class="fa fa-arrow-left"></i> Previous
+                </a>
+            </div>
+            <div class="col themed-grid-col"></div>
+            <div class="col themed-grid-col">
+                <a rel="next" class="nav-link disabled">
+                    Next <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '..';</script>
+            <script src="../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../assets/js/main.min.js""></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+                <script src="../search/main.js" defer></script>
+
+    </body>
+
+</html>
